@@ -744,7 +744,7 @@
                 <div class="logo-icon">
                     <i class="bi bi-mortarboard-fill"></i>
                 </div>
-                <span>STEM</span>Tutor
+                <span>Moiz</span>Pasha
             </a>
             <ul class="nav-links">
                 <li><a href="#about"><i class="bi bi-person-badge"></i> About</a></li>
@@ -1031,7 +1031,10 @@
                     <ul class="contact-details">
                         <li>
                             <div class="contact-icon-bubble"><i class="bi bi-envelope-at"></i></div>
-                            <span>tutor.inquiries@example.com</span>
+                            <span>moizpasha9999@gmail.com</span>
+                        </li><li>
+                            <div class="contact-icon-bubble"><i class="bi  bi-whatsapp"></i></div>
+                            <span>+92 328 6970772</span>
                         </li>
                         <li>
                             <div class="contact-icon-bubble"><i class="bi bi-camera-video"></i></div>
@@ -1045,7 +1048,7 @@
                 </div>
 
                 <!-- Inquiry Form -->
-                <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you! Your message has been received.');">
+                <form class="contact-form" >
                     <div class="form-group">
                         <label for="name"><i class="bi bi-person"></i> Student / Parent Name</label>
                         <input type="text" id="name" placeholder="John Doe" required>
@@ -1064,9 +1067,14 @@
                         <label for="message"><i class="bi bi-chat-square-text"></i> Current Level & Goals</label>
                         <textarea id="message" rows="3" placeholder="Current grade, challenges faced, upcoming exams..." required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">
-                        <i class="bi bi-send-fill"></i> Send Tutoring Inquiry
+                    <button onclick="sendInquiry(type='W')" class="btn btn-primary text-center mb-3" style="width: 100%; margin-bottom:0px; align-items:center;">
+                        <i class="bi bi-whatsapp"></i> Send Whatsapp Inquiry
                     </button>
+                    <!--
+                    <button onclick="sendInquiry(type='E')" class="btn btn-primary text-center mt-3" style="width: 100%;">
+                        <i class="bi bi-envelope-paper"></i> Send Email Inquiry
+                    </button>
+                    --->
                 </form>
             </div>
         </div>
@@ -1080,4 +1088,28 @@
     </footer>
 
 </body>
+<script>
+    function sendInquiry(type) {
+        const name = document.getElementById('name').value.trim();
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value.trim();
+
+        if (!name || !subject || !message) {
+            alert("Please fill in all fields before sending your inquiry.");
+            return;
+        }
+
+        const inquiryMessage = `Hello, my name is ${name}. I am interested in tutoring for ${subject}. Here are my current level and goals: ${message}`;
+
+        if (type === 'W') {
+            const whatsappUrl = `https://wa.me/923286970772?text=${encodeURIComponent(inquiryMessage)}`;
+            window.open(whatsappUrl, '_blank');
+        } else if (type === 'E') {
+            const emailSubject = `Tutoring Inquiry from ${name}`;
+            const emailBody = encodeURIComponent(inquiryMessage);
+            const mailtoLink = `mailto:moizpasha9999@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+            window.open(mailtoLink, '_blank');
+        }
+    }
+</script>
 </html>
